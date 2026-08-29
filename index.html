@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rida's and Farwa's Perfect Day</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- START -->
+  <div class="screen active" id="start" style="background-image:url('images/loadingscreen.jpg')">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <h1 class="game-title">
+      <span class="c1">Rida's</span>
+      <span class="c2">and</span>
+      <span class="c3">Farwa's</span>
+      <span class="c4">Perfect</span>
+      <span class="c5">Day</span>
+    </h1>
+    <p class="subtitle">a choose-your-own kind of day</p>
+    <div class="button-row" style="margin-top:22px;">
+      <button onclick="showScreen('bedroom1')">Start</button>
+    </div>
+  </div>
+
+  <!-- BEDROOM 1 -->
+  <div class="screen" id="bedroom1" style="background-image:url('images/bedroom.jpg')" data-stage="1">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">How do you want to start your perfect day?</p>
+      <div class="button-row">
+        <button onclick="chooseFood('pancakes')">Make pancakes</button>
+        <button onclick="chooseFood('eggs')">Make eggs</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COOKING (one screen, food image swapped by JS) -->
+  <div class="screen" id="cooking" style="background-image:url('images/kitchen.jpg')" data-stage="2">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <img id="food-overlay" class="overlay-img" src="" alt="">
+      <p class="question" id="cookingText"></p>
+      <div class="button-row">
+        <button onclick="showScreen('bedroom2')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEDROOM 2 -->
+  <div class="screen" id="bedroom2" style="background-image:url('images/bedroom.jpg')" data-stage="3">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">What do you want to do next?</p>
+      <div class="button-row">
+        <button onclick="choose('activity','gym','gym')">Go to the gym</button>
+        <button onclick="choose('activity','pool','pool')">Swim at the pool</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GYM -->
+  <div class="screen" id="gym" style="background-image:url('images/gym.jpg')" data-stage="4">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">Great workout!</p>
+      <div class="button-row">
+        <button onclick="showScreen('phone')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POOL -->
+  <div class="screen" id="pool" style="background-image:url('images/pool.jpg')" data-stage="4">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">Nice and refreshing!</p>
+      <div class="button-row">
+        <button onclick="showScreen('phone')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHONE / EVENING INVITE -->
+  <div class="screen" id="phone" style="background-image:url('images/tv.jpg')" data-stage="5">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">A friend invites you to a concert tonight.</p>
+      <div class="button-row">
+        <button onclick="choose('evening','concert','concert')">Go to the concert</button>
+        <button onclick="choose('evening','lounge','lounge')">Stay in</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCERT -->
+  <div class="screen" id="concert" style="background-image:url('images/concert.jpg')" data-stage="6">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">What a show!</p>
+      <div class="button-row">
+        <button onclick="showScreen('bedroom3')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOUNGE -->
+  <div class="screen" id="lounge" style="background-image:url('images/tv.jpg')" data-stage="6">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">Nice and relaxing.</p>
+      <div class="button-row">
+        <button onclick="showScreen('bedroom3')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEDROOM 3 -->
+  <div class="screen" id="bedroom3" style="background-image:url('images/bedroom.jpg')" data-stage="7">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">When are you turning in?</p>
+      <div class="button-row">
+        <button onclick="choose('sleep','early','goodnight')">Sleep early</button>
+        <button onclick="choose('sleep','late','goodnight')">Sleep late</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOODNIGHT -->
+  <div class="screen" id="goodnight" style="background-image:url('images/gn.jpg')" data-stage="8">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="progress"></div>
+    <div class="card">
+      <p class="question">Goodnight. That's a wrap on your perfect day.</p>
+      <div class="button-row">
+        <button onclick="showStats(); showScreen('stats')">See the stats</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="screen" id="stats" style="background-image:url('images/gn.jpg')">
+    <div class="sparkle-layer" aria-hidden="true"></div>
+    <div class="card stats-card">
+      <h2>Your Perfect Day, by the numbers</h2>
+      <div id="statsText"></div>
+      <div class="button-row">
+        <button onclick="restart()">Play again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
